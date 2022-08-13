@@ -1,4 +1,4 @@
-name: dart_log
+name: dart_tools
 description: Provides a tool to log colored lines to the debug console.
 version: 0.0.1
 homepage:
