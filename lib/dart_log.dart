@@ -2,8 +2,6 @@ library dart_log;
 
 import 'dart:developer' as developer;
 
-import 'package:flutter/foundation.dart';
-
 /// Prints a colored log to the debug console.
 /// You can disable all log prints globally by setting the instance [enabled] to false.
 class Log {
@@ -30,7 +28,6 @@ class Log {
     instance.log(log, identifier: identifier, color: LogColor.yellow);
   }
 
-  @visibleForTesting
   String? log(String log, {String? identifier, LogColor color = LogColor.white}) {
     String? output;
     if (enabled) {
@@ -45,7 +42,6 @@ class Log {
 }
 
 enum LogColor {
-  @visibleForTesting
   reset('\x1B[0m'),
   black('\x1B[30m'),
   red('\x1B[31m'),
