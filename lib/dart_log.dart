@@ -1,5 +1,7 @@
 library dart_log;
 
+export 'dart_log.dart';
+
 import 'dart:developer' as developer;
 
 /// Prints a colored log to the debug console.
