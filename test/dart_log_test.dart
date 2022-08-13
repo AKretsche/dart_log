@@ -3,10 +3,34 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_log/dart_log.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
+  const printMessage = 'log is not printed';
+
+  test('log is printed', () {
+    final result = Log.instance.log(printMessage, color: LogColor.cyan);
+    expect(result, '${LogColor.cyan.code}$printMessage${LogColor.reset.code}');
+  });
+
+  test('log is disabled', () {
+    Log.instance.enabled = false;
+    final result = Log.instance.log(printMessage, color: LogColor.cyan);
+    expect(result, isNull);
+  });
+
+  test('log is still disabled', () {
+    final result = Log.instance.log(printMessage, color: LogColor.cyan);
+    expect(result, isNull);
+  });
+
+  test('log has identifier', () {
+    const id = 'Test';
+    Log.instance.enabled = true;
+
+    final result = Log.instance.log(
+      printMessage,
+      color: LogColor.cyan,
+      identifier: id,
+    );
+
+    expect(result, '${LogColor.cyan.code}$id: $printMessage${LogColor.reset.code}');
   });
 }
