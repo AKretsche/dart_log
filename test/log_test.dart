@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:dart_log/dart_log.dart';
+import 'package:dart_log/log.dart';
 
 void main() {
   const printMessage = 'log is not printed';
