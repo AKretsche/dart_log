@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer' as developer;
 
 /// Prints a colored log to the debug console.
@@ -10,32 +11,116 @@ class Log {
   bool enabled = true;
 
   /// Debug log
-  static void d(String log, {String? identifier, LogColor color = LogColor.cyan}) {
-    instance.log(log, identifier: identifier, color: color);
+  static void d(
+    String message, {
+    DateTime? time,
+    int? sequenceNumber,
+    int level = 0,
+    String name = '',
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
+    LogColor color = LogColor.cyan,
+  }) {
+    instance.log(
+      message,
+      time: time,
+      sequenceNumber: sequenceNumber,
+      level: level,
+      name: name,
+      zone: zone,
+      error: error,
+      stackTrace: stackTrace,
+      color: color,
+    );
   }
 
-  static void success(String log, {String? identifier}) {
-    instance.log(log, identifier: identifier, color: LogColor.green);
+  static void success(
+    String message, {
+    DateTime? time,
+    int? sequenceNumber,
+    int level = 0,
+    String name = '',
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    instance.log(
+      message,
+      time: time,
+      sequenceNumber: sequenceNumber,
+      level: level,
+      name: name,
+      zone: zone,
+      error: error,
+      stackTrace: stackTrace,
+      color: LogColor.green,
+    );
   }
 
-  static void error(String log, {String? identifier}) {
-    instance.log(log, identifier: identifier, color: LogColor.red);
+  static void error(
+    String message, {
+    DateTime? time,
+    int? sequenceNumber,
+    int level = 0,
+    String name = '',
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    instance.log(
+      message,
+      time: time,
+      sequenceNumber: sequenceNumber,
+      level: level,
+      name: name,
+      zone: zone,
+      error: error,
+      stackTrace: stackTrace,
+      color: LogColor.red,
+    );
   }
 
-  static void warning(String log, {String? identifier}) {
-    instance.log(log, identifier: identifier, color: LogColor.yellow);
+  static void warning(
+    String message, {
+    DateTime? time,
+    int? sequenceNumber,
+    int level = 0,
+    String name = '',
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    instance.log(
+      message,
+      time: time,
+      sequenceNumber: sequenceNumber,
+      level: level,
+      name: name,
+      zone: zone,
+      error: error,
+      stackTrace: stackTrace,
+      color: LogColor.yellow,
+    );
   }
 
-  String? log(String log, {String? identifier, LogColor color = LogColor.white}) {
-    String? output;
+  void log(
+    String message, {
+    DateTime? time,
+    int? sequenceNumber,
+    int level = 0,
+    String name = '',
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
+    LogColor color = LogColor.white,
+  }) {
     if (enabled) {
-      final prefix = identifier != null //
-          ? '$identifier: '
-          : '';
-      output = '${color.code}$prefix$log${LogColor.reset.code}';
-      developer.log(output);
+      developer.log(
+        '${color.code}$message${LogColor.reset.code}',
+        name: name,
+      );
     }
-    return output;
   }
 }
 
